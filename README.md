@@ -1,35 +1,14 @@
 # Plant Disease Classification with DINOv3 Multiscale Solutions
 
-![Python](https://img.shields.io/badge/python-3.10-blue)
+This repository contains a minimal version of the project focused only on the five DINOv3 multiscale classification solutions used for plant disease recognition.
 
-This repository contains a focused research codebase for plant disease classification using DINOv3 multiscale representations and five lightweight fusion/classification variants. The project studies how different multiscale interaction strategies affect Macro-F1 across several plant disease benchmarks.
-
-## Models
+## Included Models
 
 - `Baseline CBAM`
-  A DINOv3 multiscale baseline with CBAM-based fusion.
 - `Gated CBAM`
-  Adds learnable gated refinement before CBAM fusion.
 - `Cross-Gated CBAM`
-  Uses cross-scale gating to modulate one scale with context from others.
 - `Parallel`
-  Combines gated and cross-gated pathways in a higher-capacity parallel design.
-- `CoAG (Ours)`
-  CoAG applies mutual Co-Attention Gating between consecutive scale pairs (`S1↔S2`, `S2↔S3`, `S3↔S4`), inspired by the CoAG block in MambaCAFU (Bui et al., 2025).
-
-## Results
-
-Macro-F1 across the five evaluated datasets is summarized below.
-
-| Model | Active Params | Bean | Blackgram | Corn | Sunflower | Coconut |
-|---|---:|---:|---:|---:|---:|---:|
-| Baseline CBAM | 1.08 M | 0.813 | 0.073 | 0.879 | 0.823 | 0.978 |
-| Gated CBAM | 11.70 M | 0.899 | 0.717 | 0.889 | 0.862 | 0.994 |
-| Cross-Gated CBAM | 2.27 M | 0.847 | 0.446 | 0.898 | 0.826 | 0.974 |
-| Parallel | 12.89 M | 0.751 | 0.732 | 0.894 | 0.852 | 0.994 |
-| CoAG (Ours) | 3.08 M | 0.804 | 0.673 | — | 0.916 | 0.989 |
-
-`†` Blackgram results for `Gated CBAM` and `CoAG` use `lr=1e-5`. Corn `CoAG` result is pending.
+- `CoAG`
 
 ## Repository Layout
 
@@ -48,7 +27,9 @@ Macro-F1 across the five evaluated datasets is summarized below.
 
 ## Requirements
 
-Python `3.10` is recommended.
+Python 3.10+ is recommended.
+
+Install the core dependencies you need for training:
 
 ```bash
 pip install torch torchvision numpy scikit-learn pillow
@@ -56,7 +37,7 @@ pip install torch torchvision numpy scikit-learn pillow
 
 ## External Dependency
 
-The training scripts rely on an external DINOv3 implementation that is not included in this repository. In particular, the model files expect `dinounet.dinov3.models.vision_transformer.vit_small` to be available in the Python path.
+The training code depends on an external DINOv3 implementation that is not included in this repository. The model files expect `dinounet.dinov3.models.vision_transformer.vit_small` to be available in your Python path.
 
 ## Expected Dataset Layout
 
