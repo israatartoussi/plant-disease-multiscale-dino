@@ -1,0 +1,10 @@
+dataset,best_model,acc_percent,precision,recall,f1
+corn_maize_leaf_disease,sam,96.52,0.947,0.936,0.000
+bean_disease_uganda,cbam,97.97,0.957,1.000,0.000
+guava_disease_pakistan,c2psa,67.35,0.750,0.462,0.000
+papaya_leaf_disease,bam,79.64,0.923,0.889,0.000
+blackgram_leaf_disease,c2psa,98.72,1.000,1.000,0.000
+banana_leaf_disease,c2psa,85.13,0.786,0.458,0.000
+coconut_tree_disease,bam,99.43,1.000,1.000,0.000
+rice_leaf_disease,c2psa,100.00,1.000,1.000,0.000
+sunflower_disease,sam,99.16,0.967,1.000,0.000

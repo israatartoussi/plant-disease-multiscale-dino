@@ -1,0 +1,17 @@
+names:
+  - corn_maize_leaf_disease
+  - bean_disease_uganda
+  - guava_disease_pakistan
+  - papaya_leaf_disease
+  - blackgram_leaf_disease
+  - banana_leaf_disease
+  - coconut_tree_disease
+  - rice_leaf_disease
+  - sunflower_disease
+img_size: 224
+split:
+  train: 0.70
+  val: 0.15
+  test: 0.15
+seed: 42
+root: data

@@ -1,0 +1,16 @@
+\begin{table}[t]
+\centering
+\caption{Performance on Bean (Uganda) (test split). Best per column in bold.}}
+\label{tab:bean_disease_uganda_per_model}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Model} & \textbf{Accuracy (\%)} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score}\\
+\midrule
+MobileViTv2 (baseline) & 98.21 & 0.993 & 0.982 & 0.987\\
++ CBAM & 97.77 & 0.993 & 0.978 & 0.985\\
++ BAM & 96.88 & 0.991 & 0.969 & 0.978\\
++ SAM & \textbf{98.66} & \textbf{0.996} & \textbf{0.987} & \textbf{0.991}\\
++ C2PSA & 97.77 & 0.996 & 0.978 & 0.985\\
+\bottomrule
+\end{tabular}
+\end{table}

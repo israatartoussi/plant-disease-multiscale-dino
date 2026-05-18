@@ -1,0 +1,16 @@
+\begin{table}[t]
+\centering
+\caption{Performance on Sunflower (test split). Best per column in bold.}}
+\label{tab:sunflower_disease_per_model}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Model} & \textbf{Accuracy (\%)} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score}\\
+\midrule
+MobileViTv2 (baseline) & 93.49 & \textbf{1.000} & 0.935 & 0.964\\
++ CBAM & 98.18 & \textbf{1.000} & 0.982 & 0.990\\
++ BAM & 98.70 & \textbf{1.000} & 0.987 & 0.993\\
++ SAM & \textbf{98.96} & \textbf{1.000} & \textbf{0.990} & \textbf{0.995}\\
++ C2PSA & 96.88 & \textbf{1.000} & 0.969 & 0.983\\
+\bottomrule
+\end{tabular}
+\end{table}

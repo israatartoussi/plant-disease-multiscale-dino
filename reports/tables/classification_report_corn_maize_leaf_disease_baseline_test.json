@@ -1,0 +1,39 @@
+{
+  "Blight": {
+    "precision": 0.9239766081871345,
+    "recall": 0.9132947976878613,
+    "f1-score": 0.9186046511627907,
+    "support": 173.0
+  },
+  "Common_Rust": {
+    "precision": 0.98989898989899,
+    "recall": 0.9949238578680203,
+    "f1-score": 0.9924050632911392,
+    "support": 197.0
+  },
+  "Gray_Leaf_Spot": {
+    "precision": 0.8409090909090909,
+    "recall": 0.8505747126436781,
+    "f1-score": 0.8457142857142858,
+    "support": 87.0
+  },
+  "Healthy": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 175.0
+  },
+  "accuracy": 0.9541139240506329,
+  "macro avg": {
+    "precision": 0.9386961722488039,
+    "recall": 0.9396983420498899,
+    "f1-score": 0.9391810000420538,
+    "support": 632.0
+  },
+  "weighted avg": {
+    "precision": 0.9541410524296933,
+    "recall": 0.9541139240506329,
+    "f1-score": 0.9541132040769936,
+    "support": 632.0
+  }
+}

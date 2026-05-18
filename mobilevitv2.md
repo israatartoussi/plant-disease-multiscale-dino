@@ -1,0 +1,30 @@
+```mermaid
+flowchart TB
+  classDef node  fill:#ffffff,stroke:#111111,stroke-width:1.5px,color:#111111;
+  classDef op    fill:#f2f2f2,stroke:#111111,stroke-width:1.5px,color:#111111;
+  classDef small fill:#ffffff,stroke:#111111,stroke-width:1.2px,color:#111111;
+  linkStyle default stroke:#111111,stroke-width:1.2px;
+
+  X["x"]:::small
+  DW["Depth-wise Conv 3×3"]:::op
+  PW1["Point-wise Conv 1×1"]:::op
+  U["Unfold (tokens)"]:::node
+
+  subgraph Bx["B×  (Separable Self-Attention Block)"]
+    direction TB
+    SSA["Separable Self-Attention"]:::node
+    ADD1(("⊕")):::node
+    FFN["Feed-Forward Network (MLP)"]:::node
+    ADD2(("⊕")):::node
+  end
+  style Bx fill:#ffffff,stroke:#111111,stroke-width:1.5px,stroke-dasharray:5 5;
+
+  F["Fold (tokens → feature map)"]:::node
+  PW2["Point-wise Conv 1×1"]:::op
+  Y["y"]:::small
+
+  X --> DW --> PW1 --> U --> SSA --> ADD1 --> FFN --> ADD2 --> F --> PW2 --> Y
+  U -.-> ADD1
+  ADD1 -.-> ADD2
+  linkStyle 10,11 stroke-dasharray:5 5,stroke-width:1;
+```

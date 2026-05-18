@@ -1,0 +1,15 @@
+\begin{table}[t]
+\centering
+\caption{Fair comparison on Bean Disease (Uganda) using the best checkpoint selected by validation macro-F1. The best model per dataset by test macro-F1 is shown in bold.}
+\label{tab:dino_fair_bean_disease_uganda}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Model} & \textbf{Params} & \textbf{Accuracy} & \textbf{F1-macro} & \textbf{F1-weighted}\\
+\midrule
+Baseline & 22.67M & 0.792 & 0.794 & 0.793\\
+\textbf{Gated} & 33.30M & 0.873 & \textbf{0.873} & 0.873\\
+Cross-Gated & 23.86M & 0.807 & 0.805 & 0.804\\
+Parallel & 34.48M & 0.746 & 0.747 & 0.747\\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,16 @@
+\begin{table}[t]
+\centering
+\caption{Performance on Guava (Pakistan) (test split). Best per column in bold.}}
+\label{tab:guava_disease_pakistan_per_model}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Model} & \textbf{Accuracy (\%)} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score}\\
+\midrule
+MobileViTv2 (baseline) & 59.28 & 0.791 & 0.593 & 0.668\\
++ CBAM & \textbf{69.85} & \textbf{0.899} & \textbf{0.699} & \textbf{0.779}\\
++ BAM & 66.73 & 0.858 & 0.667 & 0.746\\
++ SAM & 60.48 & 0.829 & 0.605 & 0.684\\
++ C2PSA & 69.49 & 0.835 & 0.695 & 0.754\\
+\bottomrule
+\end{tabular}
+\end{table}

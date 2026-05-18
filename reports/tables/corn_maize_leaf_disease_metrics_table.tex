@@ -1,0 +1,16 @@
+\begin{table}[t]
+\centering
+\caption{Performance on Corn/Maize (test split). Best per column in bold.}}
+\label{tab:corn_maize_leaf_disease_per_model}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Model} & \textbf{Accuracy (\%)} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score}\\
+\midrule
+MobileViTv2 (baseline) & -- & -- & -- & --\\
++ CBAM & 95.16 & \textbf{1.000} & 0.952 & 0.974\\
++ BAM & \textbf{95.94} & \textbf{1.000} & \textbf{0.959} & \textbf{0.978}\\
++ SAM & 95.78 & \textbf{1.000} & 0.958 & 0.977\\
++ C2PSA & 95.78 & \textbf{1.000} & 0.958 & 0.978\\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,27 @@
+{
+  "annotations": {
+    "precision": 1.0,
+    "recall": 0.9714285714285714,
+    "f1-score": 0.9855072463768116,
+    "support": 35.0
+  },
+  "images": {
+    "precision": 0.9722222222222222,
+    "recall": 1.0,
+    "f1-score": 0.9859154929577465,
+    "support": 35.0
+  },
+  "accuracy": 0.9857142857142858,
+  "macro avg": {
+    "precision": 0.9861111111111112,
+    "recall": 0.9857142857142858,
+    "f1-score": 0.985711369667279,
+    "support": 70.0
+  },
+  "weighted avg": {
+    "precision": 0.986111111111111,
+    "recall": 0.9857142857142858,
+    "f1-score": 0.9857113696672789,
+    "support": 70.0
+  }
+}

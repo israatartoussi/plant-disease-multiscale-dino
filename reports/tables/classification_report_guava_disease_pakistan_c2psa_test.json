@@ -1,0 +1,39 @@
+{
+  "Canker": {
+    "precision": 0.75,
+    "recall": 0.46153846153846156,
+    "f1-score": 0.5714285714285714,
+    "support": 13.0
+  },
+  "Dot": {
+    "precision": 0.7692307692307693,
+    "recall": 0.8333333333333334,
+    "f1-score": 0.8,
+    "support": 12.0
+  },
+  "Mummification": {
+    "precision": 0.75,
+    "recall": 0.6923076923076923,
+    "f1-score": 0.72,
+    "support": 13.0
+  },
+  "Rust": {
+    "precision": 0.5,
+    "recall": 0.7272727272727273,
+    "f1-score": 0.5925925925925926,
+    "support": 11.0
+  },
+  "accuracy": 0.673469387755102,
+  "macro avg": {
+    "precision": 0.6923076923076923,
+    "recall": 0.6786130536130537,
+    "f1-score": 0.671005291005291,
+    "support": 49.0
+  },
+  "weighted avg": {
+    "precision": 0.6985871271585558,
+    "recall": 0.673469387755102,
+    "f1-score": 0.6715732642263254,
+    "support": 49.0
+  }
+}
