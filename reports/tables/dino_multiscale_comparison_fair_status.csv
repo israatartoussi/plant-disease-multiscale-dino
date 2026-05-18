@@ -1,4 +1,0 @@
-dataset,status,num_present,num_required,present_models,missing_models
-bean_disease_uganda,complete,4,4,"baseline_cbam,gated_cbam,cross_gated_cbam,parallel",
-blackgram_leaf_disease,complete,4,4,"baseline_cbam,gated_cbam,cross_gated_cbam,parallel",
-corn_maize_leaf_disease,complete,4,4,"baseline_cbam,gated_cbam,cross_gated_cbam,parallel",
