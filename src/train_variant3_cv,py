@@ -12,7 +12,7 @@ from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import precision_recall_fscore_support, confusion_matrix, accuracy_score
 
 # your model
-from models.fusion_variant3 import FusionVariant3
+from models.dino_multiscale_coag_classifier import DinoMultiScaleClassifier
 
 
 IMG_EXTS = {".jpg", ".jpeg", ".png", ".bmp", ".tif", ".tiff", ".webp"}
@@ -206,7 +206,10 @@ def main():
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
-    model = FusionVariant3(num_classes=ncls, freeze_dinov3=args.freeze_dinov3).to(device)
+    model = DinoMultiScaleClassifier(
+        num_classes=ncls,
+        freeze_backbone=args.freeze_dinov3,
+    ).to(device)
 
     opt = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=args.wd)
     scaler = torch.cuda.amp.GradScaler(enabled=torch.cuda.is_available())

@@ -16,7 +16,7 @@ from PIL import Image
 from src.train_variant3_cv import ImagePathDataset, list_all_images_under_split, load_classes
 from sklearn.model_selection import StratifiedKFold
 
-from models.fusion_variant3 import FusionVariant3
+from models.dino_multiscale_coag_classifier import DinoMultiScaleClassifier
 
 
 def load_fold_pool(ds_root: Path):
@@ -37,8 +37,8 @@ def predict_logits_and_features(model, loader, device):
     for x, y in loader:
         x = x.to(device, non_blocking=True)
 
-        # We assume FusionVariant3 supports return_features=True
-        logits, feat = model(x, return_features=True)
+        logits = model(x)
+        feat = logits
         pred = logits.argmax(1).cpu().numpy()
 
         all_y.append(y.numpy())
@@ -139,7 +139,10 @@ def main():
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
     ckpt = torch.load(args.ckpt, map_location=device)
-    model = FusionVariant3(num_classes=ncls, freeze_dinov3=True).to(device)
+    model = DinoMultiScaleClassifier(
+        num_classes=ncls,
+        freeze_backbone=True,
+    ).to(device)
     model.load_state_dict(ckpt["model"])
     model.eval()
 
@@ -150,8 +153,7 @@ def main():
     plot_confusion(cm_norm, classes, out_dir / "confusion_matrix_norm.png", dpi=300)
     plot_tsne(feat, y, classes, out_dir / "tsne.png", dpi=300)
 
-    # Grad-CAM: we keep it optional because it depends on a specific layer to hook.
-    # We'll add it cleanly once you tell me which internal tensor in FusionVariant3 you want to visualize (query branch).
+    # Grad-CAM remains optional because it depends on selecting a specific internal layer to hook.
     print("[OK] wrote:", out_dir / "confusion_matrix_norm.png", "and", out_dir / "tsne.png")
 
 
