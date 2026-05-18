@@ -1,45 +1,67 @@
-# Plant Disease Classification with DINOv3 Multiscale Solutions
+# Plant Disease Classification with DINOv3 and Multiscale Attention
 
-This repository contains a minimal version of the project focused only on the five DINOv3 multiscale classification solutions used for plant disease recognition.
+This repository contains a set of plant disease classification experiments built around a DINOv3-based multiscale feature extractor and several attention-driven fusion strategies. The project focuses on comparing multiple architectural variants across plant leaf disease datasets using Macro-F1 as the main selection metric.
 
-## Included Models
+## Overview
 
-- `Baseline CBAM`
-- `Gated CBAM`
-- `Cross-Gated CBAM`
-- `Parallel`
-- `CoAG`
+The codebase includes five model solutions:
+
+1. `Baseline CBAM`
+   A DINO multiscale classifier with the base CBAM-style fusion pipeline.
+2. `Gated CBAM`
+   Adds learnable gating to adaptively weight multiscale features before fusion.
+3. `Cross-Gated CBAM`
+   Uses cross-stream gating so one scale can modulate another during fusion.
+4. `Parallel`
+   Preserves parallel multiscale branches and combines richer descriptors at the classifier head.
+5. `CoAG (Solution 5)`
+   The fifth fusion solution implemented through the cross-validation pipeline in `src/train_variant3_cv.py`.
+
+## Datasets Evaluated
+
+The README summarizes the five datasets for which results for all five solutions are available in the repository:
+
+- `bean_disease_uganda`
+- `blackgram_leaf_disease`
+- `corn_maize_leaf_disease`
+- `coconut_tree_disease`
+- `sunflower_disease`
+
+Additional dataset configurations also exist in [configs/datasets.yaml](/home/itartoussi/PlantDiseaseClassification/configs/datasets.yaml:1).
 
 ## Repository Layout
 
-- `models/__init__.py`
-- `models/dino_multiscale_classifier.py`
-- `models/dino_multiscale_gated_classifier.py`
-- `models/dino_multiscale_cross_gated_classifier.py`
-- `models/dino_multiscale_parallel_classifier.py`
-- `models/dino_multiscale_coag_classifier.py`
-- `src/train_dino_multiscale-baseline-cbam.py`
-- `src/train_dino_multiscale_gated.py`
-- `src/train_dino_multiscale_cross_gated.py`
-- `src/train_dino_multiscale_parallel.py`
-- `src/train_dino_multiscale_coag.py`
-- `src/data.py`
+- [src](/home/itartoussi/PlantDiseaseClassification/src): training, evaluation, reporting, and CV scripts
+- [models](/home/itartoussi/PlantDiseaseClassification/models): DINO multiscale classifier definitions and fusion modules
+- [configs](/home/itartoussi/PlantDiseaseClassification/configs): dataset configuration files
+- [reports](/home/itartoussi/PlantDiseaseClassification/reports): generated figures, tables, and reports
 
-## Requirements
+## Installation
 
 Python 3.10+ is recommended.
 
-Install the core dependencies you need for training:
-
 ```bash
-pip install torch torchvision numpy scikit-learn pillow
+python -m venv .venv
+source .venv/bin/activate
+pip install --upgrade pip
 ```
 
-## External Dependency
+Install PyTorch first using the command appropriate for your CUDA or CPU environment from the official PyTorch site, then install the common Python dependencies used by this project:
 
-The training code depends on an external DINOv3 implementation that is not included in this repository. The model files expect `dinounet.dinov3.models.vision_transformer.vit_small` to be available in your Python path.
+```bash
+pip install numpy scikit-learn pyyaml pandas matplotlib seaborn pillow tqdm
+pip install torchvision
+```
 
-## Expected Dataset Layout
+This project also expects an external DINOv3 codebase under `third_party/dinov3_repo`, which is intentionally not included in version control. After placing that dependency locally, expose it with:
+
+```bash
+source env.sh
+```
+
+## Expected Data Layout
+
+Datasets are not committed to the repository. The training scripts expect a structure like:
 
 ```text
 data/
@@ -49,40 +71,124 @@ data/
     test/
 ```
 
-## Example Training Commands
+For the CoAG cross-validation script, the training split is expected under `data/<dataset_name>/train/`, with `classes.txt` alongside the dataset.
 
-Baseline:
+## Training Commands
 
-```bash
-python src/train_dino_multiscale-baseline-cbam.py --dataset bean_disease_uganda --data_root data
-```
+Examples below use `bean_disease_uganda`; replace the dataset name as needed.
 
-Gated:
+### 1. Baseline CBAM
 
 ```bash
-python src/train_dino_multiscale_gated.py --dataset bean_disease_uganda --data_root data
+source env.sh
+python src/train_dino_multiscale-baseline-cbam.py \
+  --dataset bean_disease_uganda \
+  --data_root data \
+  --img 224 \
+  --bs 4 \
+  --epochs 50 \
+  --lr 1e-4 \
+  --wd 1e-2 \
+  --out runs_dino_multiscale
 ```
 
-Cross-Gated:
+### 2. Gated CBAM
 
 ```bash
-python src/train_dino_multiscale_cross_gated.py --dataset bean_disease_uganda --data_root data
+source env.sh
+python src/train_dino_multiscale_gated.py \
+  --dataset bean_disease_uganda \
+  --data_root data \
+  --img 224 \
+  --bs 4 \
+  --epochs 50 \
+  --lr 1e-4 \
+  --wd 1e-2 \
+  --out runs_dino_multiscale_gated
 ```
 
-Parallel:
+### 3. Cross-Gated CBAM
 
 ```bash
-python src/train_dino_multiscale_parallel.py --dataset bean_disease_uganda --data_root data
+source env.sh
+python src/train_dino_multiscale_cross_gated.py \
+  --dataset bean_disease_uganda \
+  --data_root data \
+  --img 224 \
+  --bs 4 \
+  --epochs 50 \
+  --lr 1e-4 \
+  --wd 1e-2 \
+  --out runs_dino_multiscale_cross_gated
 ```
 
-CoAG:
+### 4. Parallel
 
 ```bash
-python src/train_dino_multiscale_coag.py --dataset bean_disease_uganda --data_root data
+source env.sh
+python src/train_dino_multiscale_parallel.py \
+  --dataset bean_disease_uganda \
+  --data_root data \
+  --img 224 \
+  --bs 4 \
+  --epochs 50 \
+  --lr 1e-4 \
+  --wd 1e-2 \
+  --out runs_dino_multiscale_parallel
 ```
 
-## Notes
+### 5. CoAG (Solution 5)
 
-- Datasets are not included.
+Single-fold example:
+
+```bash
+source env.sh
+python src/train_variant3_cv.py \
+  --dataset bean_disease_uganda \
+  --data_root data \
+  --kfold 5 \
+  --fold 0 \
+  --img 224 \
+  --bs 32 \
+  --epochs 100 \
+  --lr 3e-4 \
+  --wd 1e-2 \
+  --out runs_variant3_cv5
+```
+
+Run all folds:
+
+```bash
+for fold in 0 1 2 3 4; do
+  python src/train_variant3_cv.py --dataset bean_disease_uganda --fold "$fold"
+done
+```
+
+## Results
+
+The table below reports Macro-F1 for the five solutions across the five datasets summarized in this repository.
+
+| Dataset | Baseline CBAM | Gated CBAM | Cross-Gated CBAM | Parallel | CoAG |
+|---|---:|---:|---:|---:|---:|
+| Bean Disease (Uganda) | 0.794 | 0.873 | 0.805 | 0.747 | 0.167 |
+| Blackgram Leaf Disease | 0.073 | 0.397 | 0.446 | 0.732 | 0.439 |
+| Corn/Maize Leaf Disease | 0.904 | 0.889 | 0.886 | 0.895 | 0.275 |
+| Coconut Tree Disease | 0.978 | 0.994 | 0.974 | 0.994 | 0.033 |
+| Sunflower Disease | 0.823 | 0.862 | 0.826 | 0.852 | 0.631 |
+
+## Notes on Result Sources
+
+- `Baseline CBAM`, `Gated CBAM`, `Cross-Gated CBAM`, and `Parallel` values above come from saved `test_metrics.json` files for each variant.
+- `CoAG` values come from the mean validation Macro-F1 reported in the corresponding 5-fold `cv_summary.json` files under `runs_variant3_cv5/`.
+- Because CoAG is summarized from cross-validation while the other four values are held-out test metrics, the comparison is useful for repository documentation but should not be interpreted as a perfectly matched benchmarking protocol.
+
+## Important Notes
+
 - DINOv3 backbone weights are not included.
-- Training outputs, checkpoints, and large artifacts are excluded by `.gitignore`.
+- Datasets are not included.
+- External repositories under `third_party/` are not included.
+- Training outputs, checkpoints, and experiment artifacts are excluded from version control.
+
+## License / Usage
+
+If you plan to release this repository publicly, add a project license file before publishing.

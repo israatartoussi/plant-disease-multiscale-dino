@@ -1,0 +1,15 @@
+%%{init: {'theme':'base','themeVariables':{
+  'fontFamily':'Times New Roman, serif','fontSize':'14px',
+  'primaryColor':'#ffffff','primaryTextColor':'#111111','lineColor':'#111111'}}}%%
+flowchart LR
+  classDef node fill:#ffffff,stroke:#111111,stroke-width:1.5px,color:#111111;
+  classDef conv fill:#DCEAF5,stroke:#111111,stroke-width:1.5px,color:#111111;
+  classDef attn fill:#FDE2D0,stroke:#111111,stroke-width:1.5px,color:#111111;
+  linkStyle default stroke:#111111,stroke-width:1.2px;
+
+  IN["Input 224×224"]:::node
+  BB["MobileViTv2 Backbone"]:::conv
+  AT["BAM (Bottleneck Attention)<br/>@ Neck"]:::attn
+  HD["Head: GAP → BN → Flatten → Dense(1024) → Dropout(0.5) → Softmax"]:::node
+
+  IN --> BB --> AT --> HD

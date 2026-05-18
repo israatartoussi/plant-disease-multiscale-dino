@@ -1,0 +1,23 @@
+%%{init: {'theme':'base','themeVariables':{
+  'fontFamily':'Times New Roman, serif','fontSize':'14px',
+  'primaryColor':'#ffffff','primaryTextColor':'#111111','lineColor':'#111111'}}}%%
+flowchart TB
+  classDef node fill:#ffffff,stroke:#111111,stroke-width:1.5px,color:#111111;
+  classDef shared fill:#DCEAF5,stroke:#111111,stroke-width:1.5px,color:#111111;
+  classDef variant fill:#F7E6C4,stroke:#111111,stroke-width:1.5px,color:#111111;
+  classDef head fill:#E3F0DD,stroke:#111111,stroke-width:1.5px,color:#111111;
+  linkStyle default stroke:#111111,stroke-width:1.2px;
+
+  IN["Input Image"]:::node --> ENC["Shared DINOv3 Encoder"]:::shared
+  ENC --> SCALES["Extract Multi-Scale Features<br/>S1, S2, S3, S4"]:::shared
+  SCALES --> MAPS["Tokens to Feature Maps<br/>+ Resize to Same Resolution"]:::shared
+
+  MAPS --> BASE["Baseline CBAM<br/>Concatenate scales directly"]:::variant
+  MAPS --> GATED["Gated CBAM<br/>Apply Gated CNN on each scale"]:::variant
+  MAPS --> CROSS["Cross-Gated CBAM<br/>Each scale gated by other scales"]:::variant
+  MAPS --> PAR["Parallel<br/>Per scale: Gated CNN + Cross-Gated output"]:::variant
+
+  BASE --> BASE2["CBAM -> 1x1 Conv -> GAP -> Classifier"]:::head
+  GATED --> GATED2["Concatenate -> CBAM -> 1x1 Conv -> GAP -> Classifier"]:::head
+  CROSS --> CROSS2["Concatenate -> CBAM -> 1x1 Conv -> GAP -> Classifier"]:::head
+  PAR --> PAR2["Fuse branch outputs -> Concatenate -> CBAM -> 1x1 Conv -> GAP -> Classifier"]:::head

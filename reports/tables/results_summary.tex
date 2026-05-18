@@ -1,0 +1,20 @@
+\begin{table}[t]
+\centering
+\caption{Test accuracy (\%) across attention variants. Best per dataset in bold.}
+\label{tab:results_summary}
+\begin{tabular}{lccccc c c}
+\toprule
+\textbf{Dataset} & \textbf{Baseline} & \textbf{CBAM} & \textbf{BAM} & \textbf{SAM} & \textbf{C2PSA} & \textbf{Best} & \textbf{Acc (\%)}\\
+\midrule
+Corn/Maize & 96.88 & 97.03 & 97.81 & \textbf{98.44} & 97.50 & SAM & 98.44\\
+Bean (Uganda) & \textbf{98.21} & 97.77 & \textbf{98.21} & 97.77 & \textbf{98.21} & BASELINE & 98.21\\
+Guava (Pakistan) & 66.67 & 56.77 & \textbf{71.88} & 59.38 & 63.54 & BAM & 71.88\\
+Papaya & 78.41 & 76.99 & 76.70 & 77.84 & \textbf{79.55} & C2PSA & 79.55\\
+Blackgram & 98.75 & 99.05 & 99.38 & \textbf{100.00} & \textbf{100.00} & SAM & 100.00\\
+Banana & 86.61 & 87.05 & 87.95 & 86.61 & \textbf{90.18} & C2PSA & 90.18\\
+Coconut & 99.33 & 99.55 & 99.55 & 99.33 & \textbf{99.67} & C2PSA & 99.67\\
+Rice & \textbf{100.00} & \textbf{100.00} & \textbf{100.00} & \textbf{100.00} & \textbf{100.00} & BASELINE & 100.00\\
+Sunflower & 95.17 & 98.86 & 98.58 & \textbf{99.15} & 98.30 & SAM & 99.15\\
+\bottomrule
+\end{tabular}
+\end{table}

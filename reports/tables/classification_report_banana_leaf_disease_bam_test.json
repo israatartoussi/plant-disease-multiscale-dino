@@ -1,0 +1,33 @@
+{
+  "healthy": {
+    "precision": 0.5714285714285714,
+    "recall": 0.3333333333333333,
+    "f1-score": 0.42105263157894735,
+    "support": 24.0
+  },
+  "segatoka": {
+    "precision": 0.8947368421052632,
+    "recall": 0.7083333333333334,
+    "f1-score": 0.7906976744186046,
+    "support": 48.0
+  },
+  "xamthomonas": {
+    "precision": 0.7972027972027972,
+    "recall": 0.926829268292683,
+    "f1-score": 0.8571428571428571,
+    "support": 123.0
+  },
+  "accuracy": 0.8,
+  "macro avg": {
+    "precision": 0.7544560702455438,
+    "recall": 0.6561653116531166,
+    "f1-score": 0.6896310543801364,
+    "support": 195.0
+  },
+  "weighted avg": {
+    "precision": 0.7934235804681149,
+    "recall": 0.8,
+    "f1-score": 0.7871144767105598,
+    "support": 195.0
+  }
+}

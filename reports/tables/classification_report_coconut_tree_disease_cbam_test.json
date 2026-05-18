@@ -1,0 +1,45 @@
+{
+  "Bud_Root_Dropping": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 78.0
+  },
+  "Bud_Rot": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 71.0
+  },
+  "Gray_Leaf_Spot": {
+    "precision": 1.0,
+    "recall": 0.9844236760124611,
+    "f1-score": 0.9921507064364207,
+    "support": 321.0
+  },
+  "Leaf_Rot": {
+    "precision": 0.980544747081712,
+    "recall": 1.0,
+    "f1-score": 0.9901768172888016,
+    "support": 252.0
+  },
+  "Stem_Bleeding": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 152.0
+  },
+  "accuracy": 0.994279176201373,
+  "macro avg": {
+    "precision": 0.9961089494163424,
+    "recall": 0.9968847352024923,
+    "f1-score": 0.9964655047450444,
+    "support": 874.0
+  },
+  "weighted avg": {
+    "precision": 0.9943904762752762,
+    "recall": 0.994279176201373,
+    "f1-score": 0.9942848223373788,
+    "support": 874.0
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "Anthracnose": {
+    "precision": 0.9215686274509803,
+    "recall": 0.8703703703703703,
+    "f1-score": 0.8952380952380953,
+    "support": 54.0
+  },
+  "BacterialSpot": {
+    "precision": 0.5384615384615384,
+    "recall": 0.7,
+    "f1-score": 0.6086956521739131,
+    "support": 70.0
+  },
+  "Curl": {
+    "precision": 0.7647058823529411,
+    "recall": 0.5842696629213483,
+    "f1-score": 0.6624203821656051,
+    "support": 89.0
+  },
+  "Healthy": {
+    "precision": 0.9722222222222222,
+    "recall": 1.0,
+    "f1-score": 0.9859154929577465,
+    "support": 35.0
+  },
+  "RingSpot": {
+    "precision": 0.9156626506024096,
+    "recall": 0.9382716049382716,
+    "f1-score": 0.926829268292683,
+    "support": 81.0
+  },
+  "accuracy": 0.7872340425531915,
+  "macro avg": {
+    "precision": 0.8225241842180184,
+    "recall": 0.8185823276459981,
+    "f1-score": 0.8158197781656085,
+    "support": 329.0
+  },
+  "weighted avg": {
+    "precision": 0.8015571111873718,
+    "recall": 0.7872340425531915,
+    "f1-score": 0.7887148321975633,
+    "support": 329.0
+  }
+}

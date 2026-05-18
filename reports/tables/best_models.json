@@ -1,0 +1,38 @@
+{
+  "banana_leaf_disease": {
+    "best_model": "sam",
+    "test_acc": 0.8482142857142857
+  },
+  "bean_disease_uganda": {
+    "best_model": "sam",
+    "test_acc": 0.9866071428571429
+  },
+  "blackgram_leaf_disease": {
+    "best_model": "c2psa",
+    "test_acc": 0.99375
+  },
+  "coconut_tree_disease": {
+    "best_model": "c2psa",
+    "test_acc": 0.9944196428571429
+  },
+  "corn_maize_leaf_disease": {
+    "best_model": "bam",
+    "test_acc": 0.959375
+  },
+  "guava_disease_pakistan": {
+    "best_model": "cbam",
+    "test_acc": 0.6985294222831726
+  },
+  "papaya_leaf_disease": {
+    "best_model": "sam",
+    "test_acc": 0.7897727272727273
+  },
+  "rice_leaf_disease": {
+    "best_model": "c2psa",
+    "test_acc": 1.0
+  },
+  "sunflower_disease": {
+    "best_model": "sam",
+    "test_acc": 0.9895833333333334
+  }
+}

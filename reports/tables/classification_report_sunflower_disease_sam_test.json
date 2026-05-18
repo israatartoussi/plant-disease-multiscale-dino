@@ -1,0 +1,39 @@
+{
+  "Downy_mildew": {
+    "precision": 0.967391304347826,
+    "recall": 1.0,
+    "f1-score": 0.9834254143646409,
+    "support": 89.0
+  },
+  "Fresh_leaf": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 98.0
+  },
+  "Gray_mold": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 71.0
+  },
+  "Leaf_scars": {
+    "precision": 1.0,
+    "recall": 0.9693877551020408,
+    "f1-score": 0.9844559585492227,
+    "support": 98.0
+  },
+  "accuracy": 0.9915730337078652,
+  "macro avg": {
+    "precision": 0.9918478260869565,
+    "recall": 0.9923469387755102,
+    "f1-score": 0.9919703432284659,
+    "support": 356.0
+  },
+  "weighted avg": {
+    "precision": 0.9918478260869564,
+    "recall": 0.9915730337078652,
+    "f1-score": 0.9915773758884183,
+    "support": 356.0
+  }
+}
