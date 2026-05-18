@@ -10,7 +10,7 @@ from torchvision import datasets, transforms
 from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import precision_recall_fscore_support, confusion_matrix
 
-from models.dino_multiscale_coag_classifier import DinoMultiScaleClassifier
+from models.fusion_variant3 import FusionVariant3
 
 
 def set_seed(seed: int):
@@ -160,10 +160,7 @@ def main():
     va_loader = DataLoader(va_set, batch_size=args.bs, shuffle=False, num_workers=4, pin_memory=True)
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    model = DinoMultiScaleClassifier(
-        num_classes=ncls,
-        freeze_backbone=args.freeze_dinov3,
-    ).to(device)
+    model = FusionVariant3(num_classes=ncls, freeze_dinov3=args.freeze_dinov3).to(device)
 
     opt = torch.optim.AdamW([p for p in model.parameters() if p.requires_grad], lr=args.lr, weight_decay=args.wd)
     scaler = torch.cuda.amp.GradScaler(enabled=torch.cuda.is_available())
